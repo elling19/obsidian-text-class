@@ -1,7 +1,7 @@
 {
 	"id": "text-class",
 	"name": "Text Class",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "Apply custom CSS classes to selected text. Manage styles in settings and apply them via right-click context menu.",
 	"author": "Elling",

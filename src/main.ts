@@ -5,7 +5,7 @@ import { initI18n, t } from "./i18n";
 
 export default class TextClassPlugin extends Plugin {
     settings: TextClassSettings = DEFAULT_SETTINGS;
-    private styleEl: HTMLStyleElement | null = null;
+    private styleSheet: CSSStyleSheet | null = null;
     private readonly CLASS_PREFIX = "tc-class-";
 
     async onload() {
@@ -65,9 +65,14 @@ export default class TextClassPlugin extends Plugin {
 
     onunload() {
         // 移除注入的样式
-        if (this.styleEl) {
-            this.styleEl.remove();
-            this.styleEl = null;
+        if (this.styleSheet) {
+            const index = document.adoptedStyleSheets.indexOf(this.styleSheet);
+            if (index !== -1) {
+                document.adoptedStyleSheets = document.adoptedStyleSheets.filter(
+                    (sheet) => sheet !== this.styleSheet
+                );
+            }
+            this.styleSheet = null;
         }
     }
 
@@ -82,28 +87,28 @@ export default class TextClassPlugin extends Plugin {
 
     /**
      * 更新/注入CSS样式
-     * 注意：动态创建style元素是实现用户自定义样式类的必要方式
+     * 使用 CSSStyleSheet API 动态管理用户自定义样式类
      */
     updateStyles() {
-        // 移除旧的样式元素
-        if (this.styleEl) {
-            this.styleEl.remove();
+        // 移除旧的样式表
+        if (this.styleSheet) {
+            document.adoptedStyleSheets = document.adoptedStyleSheets.filter(
+                (sheet) => sheet !== this.styleSheet
+            );
         }
 
-        // 创建新的样式元素
-        // eslint-disable-next-line -- 动态样式是插件核心功能，用户定义的CSS类需要运行时注入
-        this.styleEl = document.createElement("style");
-        this.styleEl.id = "text-class-plugin-styles";
+        // 创建新的样式表
+        this.styleSheet = new CSSStyleSheet();
 
-        // 生成CSS（只生成启用的样式）
+        // 生成CSS规则（只生成启用的样式）
         const cssRules = this.settings.classes
             .filter((textClass: TextClass) => textClass.enabled !== false)
             .map((textClass: TextClass) => {
                 return `.${this.CLASS_PREFIX}${textClass.id} { ${textClass.cssStyle} }`;
             }).join("\n");
 
-        this.styleEl.textContent = cssRules;
-        document.head.appendChild(this.styleEl);
+        this.styleSheet.replaceSync(cssRules);
+        document.adoptedStyleSheets = [...document.adoptedStyleSheets, this.styleSheet];
     }
 
     /**
