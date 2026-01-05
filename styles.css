@@ -1,0 +1,580 @@
+/*
+ * Text Class Plugin Styles
+ */
+
+/* 设置页面 */
+.text-class-settings {
+    max-width: 800px;
+}
+
+.text-class-empty-hint {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: var(--size-4-4);
+}
+
+/* 标题行 */
+.text-class-header {
+    display: flex;
+    align-items: center;
+    padding: var(--size-4-2) 0;
+    font-weight: 500;
+    font-size: var(--font-ui-small);
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--background-modifier-border);
+    margin-top: var(--size-4-4);
+}
+
+/* 标题行的名称列需要包含拖拽手柄的占位 */
+.text-class-header .text-class-col-name {
+    flex: 0 0 174px;
+}
+
+/* 列表容器 */
+.text-class-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 样式项 */
+.text-class-item {
+    display: flex;
+    align-items: center;
+    padding: var(--size-4-2) 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+/* class列表最后一个元素不需要border-bottom，因为设置列表下面的选项有border-top*/
+.text-class-item:last-child {
+    border-bottom: none;
+}
+
+.text-class-item:hover {
+    background: var(--background-secondary);
+}
+
+/* 可拖拽区域（包含手柄和名称） */
+.text-class-draggable-area {
+    display: flex;
+    align-items: center;
+    cursor: grab;
+}
+
+.text-class-draggable-area:active {
+    cursor: grabbing;
+}
+
+/* 拖拽手柄 */
+.text-class-drag-handle {
+    flex: 0 0 24px;
+    color: var(--text-muted);
+    cursor: grab;
+    font-size: 12px;
+    user-select: none;
+    opacity: 0.5;
+}
+
+.text-class-item:hover .text-class-drag-handle {
+    opacity: 1;
+}
+
+/* 拖拽中的样式 */
+.text-class-dragging {
+    opacity: 0.5;
+}
+
+/* 拖拽目标样式 */
+.text-class-drag-over {
+    box-shadow: 0 -2px 0 0 var(--interactive-accent);
+}
+
+/* 列宽度 */
+.text-class-col-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 可拖拽区域宽度 = 手柄(24px) + 名称列(150px) */
+.text-class-draggable-area {
+    flex: 0 0 174px;
+    gap: var(--size-4-1);
+}
+
+.text-class-col-preview {
+    flex: 1;
+    min-width: 0;
+}
+
+.text-class-col-enabled {
+    flex: 0 0 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.text-class-col-actions {
+    flex: 0 0 80px;
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--size-4-1);
+}
+
+/* 预览文本 */
+.text-class-preview-text {
+    display: inline-block;
+}
+
+/* 右键菜单标题样式 */
+.text-class-menu-header {
+    font-weight: 600;
+    color: var(--text-muted) !important;
+    font-size: var(--font-ui-small);
+    pointer-events: none;
+}
+
+.text-class-menu-header .menu-item-icon {
+    color: var(--text-muted) !important;
+}
+
+/* 右键菜单中已应用样式的高亮 */
+.text-class-menu-applied {
+    color: var(--interactive-accent) !important;
+}
+
+.text-class-menu-applied .menu-item-icon {
+    color: var(--interactive-accent) !important;
+}
+
+/* 右键菜单中移除样式的 danger 颜色 */
+.text-class-menu-danger {
+    color: var(--text-error) !important;
+}
+
+.text-class-menu-danger .menu-item-icon {
+    color: var(--text-error) !important;
+}
+
+/* 右键菜单中的样式预览 */
+.text-class-menu-preview {
+    margin-left: auto;
+    font-size: var(--font-ui-small);
+}
+
+/* Modal 样式 */
+.text-class-modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-class-modal .setting-item {
+    border-top: none;
+    padding: var(--size-4-3) 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/* Modal 中的输入项水平布局，标签固定宽度 */
+.text-class-modal .setting-item-info {
+    flex: 0 0 200px;
+    margin-bottom: 0;
+    padding-top: 6px;
+}
+
+.text-class-modal .setting-item-control {
+    flex: 1;
+    min-width: 0;
+}
+
+/* 滚动区域容器 */
+.text-class-scroll-container {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: 500px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-m);
+    padding: 0 var(--size-4-2);
+    margin: var(--size-4-2) 0;
+}
+
+.text-class-input-textarea {
+    width: 100%;
+    min-height: 260px;
+    font-family: var(--font-monospace);
+    font-size: var(--font-ui-small);
+}
+
+/* 固定底部区域 */
+.text-class-fixed-bottom {
+    flex-shrink: 0;
+    padding-top: var(--size-4-2);
+}
+
+/* 预览区域 */
+.text-class-preview-container {
+    background: var(--background-secondary);
+    border-radius: var(--radius-m);
+    padding: var(--size-4-4);
+    margin: var(--size-4-2) 0;
+    text-align: center;
+}
+
+.text-class-preview {
+    font-size: var(--font-ui-medium);
+}
+
+/* Modal 按钮区域 */
+.text-class-fixed-bottom > .setting-item:last-child {
+    padding-top: var(--size-4-2);
+    margin-top: 0;
+    justify-content: center;
+}
+
+.text-class-fixed-bottom > .setting-item:last-child .setting-item-info {
+    display: none;
+}
+
+.text-class-modal > .setting-item:last-child .setting-item-control {
+    flex: none;
+    justify-content: center;
+    gap: var(--size-4-2);
+}
+
+/* Tab 切换容器 */
+.text-class-tab-container {
+    display: flex;
+    gap: 0;
+    margin: var(--size-4-3) 0 0 0;
+    border-bottom: 2px solid var(--background-modifier-border);
+}
+
+.text-class-tab {
+    display: flex;
+    align-items: center;
+    gap: var(--size-4-2);
+    padding: var(--size-4-2) var(--size-4-3);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: var(--font-ui-small);
+    transition: color 0.15s ease, background-color 0.15s ease;
+    border-radius: var(--radius-s) var(--radius-s) 0 0;
+}
+
+.text-class-tab:hover {
+    color: var(--text-normal);
+    background-color: var(--background-modifier-hover);
+}
+
+.text-class-tab-active {
+    color: var(--text-accent);
+    border-bottom-color: var(--text-accent);
+}
+
+.text-class-tab svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* 样式编辑器容器 */
+.text-class-editor-container {
+    margin: var(--size-4-2) 0;
+}
+
+.text-class-editor-container .setting-item {
+    padding: var(--size-4-2) 0;
+}
+
+.text-class-editor-container .setting-item:first-child {
+    padding-top: 0;
+}
+
+.text-class-editor-container .setting-item:last-child {
+    padding-bottom: 0;
+    border-top: none;
+    margin-top: 0;
+}
+
+/* 颜色选择器样式 */
+.text-class-editor-container .setting-item-control {
+    gap: var(--size-4-2);
+}
+
+/* 颜色选择器为空时的透明效果 */
+.text-class-color-empty {
+    position: relative;
+    background: 
+        linear-gradient(45deg, #ccc 25%, transparent 25%),
+        linear-gradient(-45deg, #ccc 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #ccc 75%),
+        linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+    background-color: white;
+    border-radius: var(--radius-s);
+}
+
+.text-class-color-empty::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 45%, #ff4444 45%, #ff4444 55%, transparent 55%);
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+/* 数字输入框样式 */
+.text-class-editor-container input[type="number"] {
+    text-align: center;
+}
+
+/* 统一清除按钮禁用样式 */
+.text-class-editor-container button:disabled,
+.text-class-editor-container button[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* 禁用状态的设置项样式 */
+.text-class-setting-disabled {
+    opacity: 0.5;
+}
+
+.text-class-setting-disabled .setting-item-name {
+    color: var(--text-muted);
+}
+
+/* ==================== 移动端适配 ==================== */
+@media (max-width: 600px) {
+    /* 设置页面整体 */
+    .text-class-settings {
+        padding: 0;
+    }
+
+    /* 隐藏表头，移动端用卡片式布局 */
+    .text-class-header {
+        display: none;
+    }
+
+    /* 样式项改为卡片式布局 */
+    .text-class-item {
+        flex-wrap: wrap;
+        padding: var(--size-4-3);
+        margin-bottom: var(--size-4-2);
+        border-radius: var(--radius-m);
+        background: var(--background-secondary);
+        border: none;
+        gap: var(--size-4-2);
+    }
+
+    /* 拖拽手柄在移动端更大更容易触摸 */
+    .text-class-drag-handle {
+        flex: 0 0 32px;
+        font-size: 16px;
+        padding: var(--size-4-1);
+        opacity: 0.7;
+    }
+
+    /* 名称占据剩余空间 */
+    .text-class-col-name {
+        flex: 1;
+        font-weight: 500;
+    }
+
+    /* 启用开关在第一行右侧 */
+    .text-class-col-enabled {
+        flex: 0 0 auto;
+    }
+
+    /* 预览占据整行 */
+    .text-class-col-preview {
+        flex: 0 0 100%;
+        order: 1;
+        padding: var(--size-4-2);
+        background: var(--background-primary);
+        border-radius: var(--radius-s);
+    }
+
+    /* 操作按钮占据整行 */
+    .text-class-col-actions {
+        flex: 0 0 100%;
+        order: 2;
+        justify-content: flex-start;
+        gap: var(--size-4-2);
+    }
+
+    .text-class-col-actions button {
+        flex: 1;
+    }
+
+    /* Modal 在移动端的适配 */
+    .text-class-modal .setting-item {
+        flex-direction: column;
+    }
+
+    .text-class-modal .setting-item-info {
+        flex: none;
+        padding-top: 0;
+        margin-bottom: var(--size-4-1);
+    }
+
+    .text-class-modal .setting-item-control {
+        width: 100%;
+    }
+}
+
+/* 触摸设备优化 */
+@media (pointer: coarse) {
+    /* 增大可触摸区域 */
+    .text-class-drag-handle {
+        padding: var(--size-4-2);
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .text-class-col-actions button {
+        min-height: 44px;
+        padding: var(--size-4-2) var(--size-4-3);
+    }
+
+    /* 拖拽时的视觉反馈更明显 */
+    .text-class-dragging {
+        opacity: 0.3;
+        transform: scale(0.98);
+    }
+
+    .text-class-drag-over {
+        box-shadow: 0 -3px 0 0 var(--interactive-accent);
+    }
+}
+
+/* ==================== 分组标题样式 ==================== */
+.text-class-group-header {
+    display: flex;
+    align-items: center;
+    padding: var(--size-4-2) 0;
+    margin-top: var(--size-4-3);
+    margin-bottom: var(--size-4-1);
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.text-class-group-header span {
+    font-weight: 600;
+    font-size: var(--font-ui-small);
+    color: var(--text-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.text-class-group-header:first-child {
+    margin-top: 0;
+}
+
+/* ==================== 四方位输入框样式 ==================== */
+.text-class-four-side-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: var(--size-4-2) 0;
+    gap: var(--size-4-3);
+}
+
+.text-class-four-side-label {
+    flex: 0 0 auto;
+    min-width: 80px;
+    font-size: var(--font-ui-small);
+    color: var(--text-normal);
+    padding-bottom: 6px;
+}
+
+.text-class-four-side-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.text-class-four-side-input-label {
+    font-size: var(--font-ui-smaller);
+    color: var(--text-muted);
+}
+
+.text-class-four-side-input-field {
+    width: 100%;
+    padding: var(--size-4-1);
+    text-align: center;
+    font-size: var(--font-ui-small);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-s);
+    background: var(--background-primary);
+}
+
+.text-class-four-side-input-field:focus {
+    border-color: var(--interactive-accent);
+    outline: none;
+}
+
+.text-class-four-side-clear {
+    flex: 0 0 auto;
+    background: none;
+    border: none;
+    padding: var(--size-4-1);
+    margin-bottom: 0;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-radius: var(--radius-s);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-class-four-side-clear:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.text-class-four-side-clear.text-class-btn-disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.text-class-four-side-clear.text-class-btn-disabled:hover {
+    background: none;
+    color: var(--text-muted);
+}
+
+/* 移动端适配四方位输入 */
+@media (max-width: 600px) {
+    .text-class-four-side-container {
+        flex-wrap: wrap;
+        align-items: flex-end;
+    }
+    
+    .text-class-four-side-label {
+        flex: 0 0 100%;
+        margin-bottom: var(--size-4-1);
+        padding-bottom: 0;
+    }
+    
+    .text-class-four-side-input {
+        flex: 1 1 calc(25% - var(--size-4-2));
+    }
+}
+
+/* 禁用状态的颜色选择器 */
+.text-class-color-disabled {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
